@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#button').on('click', function () {
+            $.ajax({
+                url: 'get_answer',
+                data: {
+                    q:  $("#fname").val(),
+                },
+                type: "GET",
+                dataType: "json",
+
+            }).done(function (data) {
+                console.log(data)
+                $('#response').val(data.answer.text)
+
+            })
+        })
+
+    })
+
+
+  </script>
+</head>
+<body>
+
+<h1>sanic-chatterbot</h1>
+<h3>A web implementation of <a href="https://github.com/gunthercox/ChatterBot">ChatterBot</a> using Sanic.</h3>
+
+<p>
+<h4>Usage example:</h4>
+<input type="text" id='fname' name="fname" />
+<button id='button' onclick="">get answer</button>
+<input type="text" id="response" style="width:500px"/>
+</p>
+
+
+
+
+</body>
+</html>
